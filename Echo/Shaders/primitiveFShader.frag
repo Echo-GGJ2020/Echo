@@ -6,7 +6,7 @@ in vec4 color;
 in vec2 tex_coords;
 in vec3 frag_position;
 
-out vec4 gl_FragColor;
+out vec4 out_color;
 
 uniform bool applyColors;
 uniform bool applyTexture;
@@ -25,14 +25,14 @@ void main() {
 	const float quad_term = .000007f;
 
 	if(applyTexture) {
-		gl_FragColor = texture(textureSample, tex_coords);
+		out_color = texture(textureSample, tex_coords);
 		if(applyColors) {
-			gl_FragColor = gl_FragColor * color;
+			out_color = out_color * color;
 		}
 	} else if(applyColors) {
-		gl_FragColor = color;
+		out_color = color;
 	} else {
-		gl_FragColor = vec4(.5f, 0.f, .5f, 0.f);
+		out_color = vec4(.5f, 0.f, .5f, 0.f);
 	}
 	vec3 totalColor = vec3(0, 0, 0);
 	for(int i = 0; i < numLights; ++i) {
@@ -43,5 +43,5 @@ void main() {
 			totalColor = lightColors[i] * vec3((lightRadii[i] - dist) / lightRadii[i]);
 		}
 	}
-	gl_FragColor *= vec4(ambientLightColor + totalColor, 1);
+	out_color *= vec4(ambientLightColor + totalColor, 1);
 }
