@@ -1,0 +1,10 @@
+#Documentation of ext. libraries
+*.html
+*.js
+*.css
+
+/x64/
+.vs/
+Engine/x64/
+Sandbox/x64/
+SignedDistanceFieldGenerator/x64/
