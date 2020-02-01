@@ -2,7 +2,7 @@
 
 in vec2 tex_coords;
 
-out vec4 gl_FragColor;
+out vec4 out_color;
 
 uniform sampler2D characterTextureAtlas;
 
@@ -26,5 +26,5 @@ void main() {
 	float overallAlpha = alpha + (1.0 - alpha) * outlineAlpha;
 	vec3 overallColor = mix(outlineColor, color, alpha / overallAlpha);
 
-	gl_FragColor = vec4(overallColor, overallAlpha);
+	out_color = vec4(overallColor, overallAlpha);
 }
